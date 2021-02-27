@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/components/custom_surfix_icon.dart';
 import 'package:med_app/components/form_error.dart';
-// import 'package:med_app/screens/dashboard/dashboard.dart';
 import 'package:med_app/screens/forgot_password/forgot_password_screen.dart';
-// import 'package:med_app/screens/homeScreen.dart';
+import 'package:med_app/screens/homeScreen.dart';
 
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
@@ -59,8 +58,8 @@ class _SignFormState extends State<SignForm> {
               Text("Remember me"),
               Spacer(),
               GestureDetector(
-                // onTap: () => Navigator.pushNamed(
-                //     context, ForgotPasswordScreen.routeName),
+                onTap: () => Navigator.pushNamed(
+                    context, ForgotPasswordScreen.routeName),
                 child: Text(
                   "Forgot Password",
                   style: TextStyle(decoration: TextDecoration.underline),
@@ -76,7 +75,7 @@ class _SignFormState extends State<SignForm> {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
-                // Navigator.pushNamed(context, HomeScreen.routeName);
+                Navigator.pushNamed(context, HomeScreen.routeName);
               }
             },
           ),
@@ -143,8 +142,6 @@ class _SignFormState extends State<SignForm> {
       decoration: InputDecoration(
         labelText: "Email",
         hintText: "Enter your email",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),

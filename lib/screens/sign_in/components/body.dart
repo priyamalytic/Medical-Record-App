@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/components/no_account_text.dart';
-import 'package:med_app/components/social_card.dart';
-import 'package:med_app/screens/forgot_password/forgot_password_screen.dart';
-
-import '../../../constants.dart';
 import '../../../size_config.dart';
 import 'sign_form.dart';
 
@@ -30,35 +26,12 @@ class Body extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "Sign in with your email and password  \nor continue with social media",
+                    "Sign in with your email and password \n",
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: SizeConfig.screenHeight * 0.06),
                   SignForm(),
                   SizedBox(height: SizeConfig.screenHeight * 0.04),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      socialCard(
-                        icon: "assets/icons/google-icon.svg",
-                        press: () {},
-                      ),
-                      SizedBox(
-                        width: SizeConfig.screenWidth * 0.01,
-                      ),
-                      socialCard(
-                        icon: "assets/icons/facebook-2.svg",
-                        press: () {},
-                      ),
-                      SizedBox(
-                        width: SizeConfig.screenWidth * 0.01,
-                      ),
-                      socialCard(
-                        icon: "assets/icons/twitter.svg",
-                        press: () {},
-                      ),
-                    ],
-                  ),
                   SizedBox(height: getProportionateScreenHeight(20)),
                   NoAccountText(),
                   SizedBox(height: getProportionateScreenHeight(20)),

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
-//import 'components/body.dart';
 import 'package:med_app/screens/sign_in/components/body.dart';
-
 import '../../size_config.dart';
 
 class SignInScreen extends StatelessWidget {
