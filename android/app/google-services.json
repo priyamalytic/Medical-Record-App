@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "42026339023",
+    "project_id": "medical-record-app-2ad09",
+    "storage_bucket": "medical-record-app-2ad09.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42026339023:android:fe28429366f61eb3a285ba",
+        "android_client_info": {
+          "package_name": "com.bitbiters.med_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "42026339023-flphjemmm0u3q88ijetasi0sk3dc3bra.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrH0mXHofnALD1pn-s_I9gpCYRB_J2UBs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "42026339023-flphjemmm0u3q88ijetasi0sk3dc3bra.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
