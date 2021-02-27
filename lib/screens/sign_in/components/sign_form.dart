@@ -15,6 +15,9 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+  TextEditingController emailTextEditingController = TextEditingController();
+  TextEditingController passwordTextEditingController = TextEditingController();
+
   final _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
   String email;
@@ -78,6 +81,7 @@ class _SignFormState extends State<SignForm> {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
                 try {
+                  signInAndAuthenticateUser(context);
                   final user = await _auth.signInWithEmailAndPassword(
                       email: email, password: password);
                   if (user != null) {
@@ -96,6 +100,7 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
+      controller: emailTextEditingController,
       obscureText: true,
       onSaved: (newValue) => password = newValue,
       onChanged: (value) {
@@ -129,6 +134,7 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
+      controller: passwordTextEditingController,
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
@@ -156,5 +162,18 @@ class _SignFormState extends State<SignForm> {
         suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
     );
+  }
+
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  void signInAndAuthenticateUser(BuildContext context) async {
+    final User firebaseUser = (await _firebaseAuth
+            .signInWithEmailAndPassword(
+                email: emailTextEditingController.text,
+                password: passwordTextEditingController.text)
+            .catchError((errMsg) {
+      print("Error: " + errMsg);
+    }))
+        .user;
   }
 }
