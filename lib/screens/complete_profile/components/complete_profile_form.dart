@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/components/custom_surfix_icon.dart';
 import 'package:med_app/components/default_button.dart';
 import 'package:med_app/components/form_error.dart';
+import 'package:med_app/main.dart';
 import 'package:med_app/screens/homeScreen.dart';
 
 import '../../../constants.dart';
@@ -15,6 +17,11 @@ class CompleteProfileForm extends StatefulWidget {
 class _CompleteProfileFormState extends State<CompleteProfileForm> {
   final _formKey = GlobalKey<FormState>();
   final List<String> errors = [];
+  TextEditingController nameTextEditingController = TextEditingController();
+  TextEditingController phoneNumberTextEditingController =
+      TextEditingController();
+  TextEditingController addressTextEditingController = TextEditingController();
+
   // String firstName;
   // String lastName;
   String fullName;
@@ -145,7 +152,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
             text: "Continue",
             press: () {
               if (_formKey.currentState.validate()) {
-                Navigator.pushNamed(context, HomeScreen.routeName);
+                updatePatientInfo();
               }
             },
           ),
@@ -156,6 +163,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildAddressFormField() {
     return TextFormField(
+      controller: addressTextEditingController,
       onSaved: (newValue) => address = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -182,6 +190,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildPhoneNumberFormField() {
     return TextFormField(
+      controller: phoneNumberTextEditingController,
       keyboardType: TextInputType.phone,
       onSaved: (newValue) => phoneNumber = newValue,
       onChanged: (value) {
@@ -245,6 +254,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildFullNameFormField() {
     return TextFormField(
+      controller: nameTextEditingController,
       onSaved: (newValue) => fullName = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -266,5 +276,22 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/User.svg"),
       ),
     );
+  }
+
+  final User currentUser = FirebaseAuth.instance.currentUser;
+  updatePatientInfo() {
+    Map patientDataMap = {
+      "name": nameTextEditingController.text,
+      "phone": phoneNumberTextEditingController,
+      "address": addressTextEditingController,
+    };
+    try {
+      patientRef.child(currentUser.uid).set(patientDataMap);
+      print(currentUser.email);
+
+      Navigator.pushNamed(context, HomeScreen.routeName);
+    } catch (e) {
+      print(e);
+    }
   }
 }

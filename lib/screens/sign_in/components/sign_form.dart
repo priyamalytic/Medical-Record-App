@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/components/custom_surfix_icon.dart';
 import 'package:med_app/components/form_error.dart';
@@ -14,6 +15,7 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+  final _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
   String email;
   String password;
@@ -71,11 +73,19 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Continue",
-            press: () {
+            press: () async {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
-                Navigator.pushNamed(context, HomeScreen.routeName);
+                try {
+                  final user = await _auth.signInWithEmailAndPassword(
+                      email: email, password: password);
+                  if (user != null) {
+                    Navigator.pushNamed(context, HomeScreen.routeName);
+                  }
+                } catch (e) {
+                  print(e);
+                }
               }
             },
           ),

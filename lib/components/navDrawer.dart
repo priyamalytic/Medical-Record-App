@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/constants.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import '../size_config.dart';
 
@@ -115,10 +117,19 @@ class NavDrawer extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              // _auth.signOut();
+              // _signOut();
+            },
           ),
         ],
       ),
     );
+  }
+
+  final FirebaseAuth currentUser = FirebaseAuth.instance;
+
+  _signOut() async {
+    await currentUser.signOut();
   }
 }
