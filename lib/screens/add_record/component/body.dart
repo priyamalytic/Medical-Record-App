@@ -51,6 +51,7 @@ class _BodyState extends State<Body> {
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
+                    color: Colors.black,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -66,7 +67,11 @@ class _BodyState extends State<Body> {
                     ),
                     Text(
                       "Blood Group: ",
-                      style: TextStyle(fontSize: 21),
+                      style: TextStyle(
+                        fontSize: 21,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     SizedBox(
                       width: getProportionateScreenWidth(25),
@@ -82,7 +87,11 @@ class _BodyState extends State<Body> {
                     ),
                     Text(
                       "Diabetic: ",
-                      style: TextStyle(fontSize: 21),
+                      style: TextStyle(
+                        fontSize: 21,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     SizedBox(
                       width: getProportionateScreenWidth(68),
@@ -103,6 +112,7 @@ class _BodyState extends State<Body> {
                     }
                   },
                 ),
+                SizedBox(height: getProportionateScreenHeight(30)),
               ],
             ),
           ),
@@ -129,9 +139,15 @@ class _BodyState extends State<Body> {
       },
       decoration: InputDecoration(
         labelText: "Patient Id",
+        labelStyle: TextStyle(
+          color: Colors.black,
+        ),
         hintText: "Enter Patient Id",
+        hintStyle: TextStyle(
+          color: Colors.black,
+        ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/User.svg"),
+        suffixIcon: Icon(Icons.person),
       ),
     );
   }
@@ -154,14 +170,29 @@ class _BodyState extends State<Body> {
       },
       decoration: InputDecoration(
         labelText: "Name",
+        labelStyle: TextStyle(
+          color: Colors.black,
+        ),
         hintText: "Enter Patient Name",
+        hintStyle: TextStyle(
+          color: Colors.black,
+        ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/User.svg"),
+        suffixIcon: Icon(Icons.person),
       ),
     );
   }
 
-  List bloodGroupItems = ["  A+", "  B+", "  O+"];
+  List bloodGroupItems = [
+    "  A+",
+    "  A-",
+    "  B+",
+    "  B-",
+    "  AB+",
+    "  AB-",
+    "  O+",
+    "  O-",
+  ];
 
   bloodGroupDropDownMenu() {
     return Padding(
@@ -177,7 +208,12 @@ class _BodyState extends State<Body> {
           borderRadius: BorderRadius.circular(15),
         ),
         child: DropdownButton(
-          hint: Text("Blood Group"),
+          hint: Text(
+            "Blood Group",
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
           dropdownColor: Colors.white,
           icon: Icon(Icons.arrow_drop_down_outlined),
           iconSize: 25,
@@ -220,7 +256,12 @@ class _BodyState extends State<Body> {
           borderRadius: BorderRadius.circular(15),
         ),
         child: DropdownButton(
-          hint: Text("Select Option"),
+          hint: Text(
+            "Select Option",
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
           dropdownColor: Colors.white,
           icon: Icon(Icons.arrow_drop_down_outlined),
           iconSize: 25,
@@ -265,7 +306,13 @@ class _BodyState extends State<Body> {
       },
       decoration: InputDecoration(
         labelText: "Address",
+        labelStyle: TextStyle(
+          color: Colors.black,
+        ),
         hintText: "Enter Patient Address",
+        hintStyle: TextStyle(
+          color: Colors.black,
+        ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Icon(Icons.home),
       ),
@@ -290,7 +337,13 @@ class _BodyState extends State<Body> {
       },
       decoration: InputDecoration(
         labelText: "Health Condition",
+        labelStyle: TextStyle(
+          color: Colors.black,
+        ),
         hintText: "Enter Patient Health Condition",
+        hintStyle: TextStyle(
+          color: Colors.black,
+        ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Icon(Icons.healing),
       ),

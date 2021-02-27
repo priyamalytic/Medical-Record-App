@@ -47,6 +47,7 @@ class _BodyState extends State<Body> {
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
+                    color: Colors.black,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -88,9 +89,15 @@ class _BodyState extends State<Body> {
       },
       decoration: InputDecoration(
         labelText: "Patient Id",
+        labelStyle: TextStyle(
+          color: Colors.black,
+        ),
         hintText: "Enter Patient Id",
+        hintStyle: TextStyle(
+          color: Colors.black,
+        ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/User.svg"),
+        suffixIcon: Icon(Icons.person),
       ),
     );
   }

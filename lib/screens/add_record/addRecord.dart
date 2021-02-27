@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:med_app/components/navDrawer.dart';
-import 'package:med_app/components/sideAppbarIcons.dart';
 import 'package:med_app/screens/add_record/component/body.dart';
 import 'package:med_app/size_config.dart';
 
