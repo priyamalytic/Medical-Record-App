@@ -87,6 +87,7 @@ class _SignFormState extends State<SignForm> {
                   // if (user != null) {
                   //   Navigator.pushNamed(context, HomeScreen.routeName);
                   // }
+                  Navigator.pushNamed(context, HomeScreen.routeName);
                 } catch (e) {
                   print(e);
                 }
@@ -183,6 +184,9 @@ class _SignFormState extends State<SignForm> {
           .signInWithEmailAndPassword(
               email: emailTextEditingController.text,
               password: passwordTextEditingController.text);
+      if (userCredential != null) {
+        Navigator.pushNamed(context, HomeScreen.routeName);
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');

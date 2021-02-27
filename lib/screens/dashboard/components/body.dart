@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/components/custom_surfix_icon.dart';
 import 'package:med_app/components/default_button.dart';
+import 'package:med_app/screens/view_patient_record/viewPatientRecord.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -57,6 +58,7 @@ class _BodyState extends State<Body> {
                   press: () {
                     if (_formKey.currentState.validate()) {
                       // next page
+                      Navigator.pushNamed(context, ViewPatientRecord.routeName);
                     }
                   },
                 ),

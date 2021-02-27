@@ -4,6 +4,7 @@ import 'package:med_app/screens/dashboard/dashboard.dart';
 import 'package:med_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:med_app/screens/homeScreen.dart';
 import 'package:med_app/screens/sign_in/sign_in_screen.dart';
+import 'package:med_app/screens/view_patient_record/viewPatientRecord.dart';
 import 'screens/sign_up/sign_up_screen.dart';
 
 // We use name route
@@ -15,4 +16,5 @@ final Map<String, WidgetBuilder> routes = {
   CompleteProfileScreen.routeName: (context) => CompleteProfileScreen(),
   DashBoard.routeName: (context) => DashBoard(),
   HomeScreen.routeName: (context) => HomeScreen(),
+  ViewPatientRecord.routeName: (context) => ViewPatientRecord(),
 };
