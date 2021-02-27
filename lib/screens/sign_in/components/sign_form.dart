@@ -82,11 +82,11 @@ class _SignFormState extends State<SignForm> {
                 // if all are valid then go to success screen
                 try {
                   signInAndAuthenticateUser(context);
-                  final user = await _auth.signInWithEmailAndPassword(
-                      email: email, password: password);
-                  if (user != null) {
-                    Navigator.pushNamed(context, HomeScreen.routeName);
-                  }
+                  // final user = await _auth.signInWithEmailAndPassword(
+                  //     email: email, password: password);
+                  // if (user != null) {
+                  //   Navigator.pushNamed(context, HomeScreen.routeName);
+                  // }
                 } catch (e) {
                   print(e);
                 }
@@ -167,13 +167,28 @@ class _SignFormState extends State<SignForm> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   void signInAndAuthenticateUser(BuildContext context) async {
-    final User firebaseUser = (await _firebaseAuth
-            .signInWithEmailAndPassword(
-                email: emailTextEditingController.text,
-                password: passwordTextEditingController.text)
-            .catchError((errMsg) {
-      print("Error: " + errMsg);
-    }))
-        .user;
+    // final User firebaseUser = (await _firebaseAuth
+    //         .signInWithEmailAndPassword(
+    //             email: emailTextEditingController.text,
+    //             password: passwordTextEditingController.text)
+    //         .catchError((errMsg) {
+    //   print("Error: " + errMsg);
+    // }))
+    //     .user;
+    // if (firebaseUser != null) {
+    //   Navigator.pushNamed(context, HomeScreen.routeName);
+    // }
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: emailTextEditingController.text,
+              password: passwordTextEditingController.text);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
   }
 }
