@@ -13,7 +13,6 @@ class _AddRecordState extends State<AddRecord> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: new NavDrawer(),
       appBar: AppBar(
         title: Text(
           "Add Record",
@@ -23,7 +22,6 @@ class _AddRecordState extends State<AddRecord> {
           ),
         ),
         toolbarHeight: SizeConfig.screenHeight * 0.1,
-        actions: SideIcons(),
       ),
       body: Body(),
     );

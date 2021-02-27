@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/constants.dart';
 import 'package:med_app/screens/add_record/addRecord.dart';
-import 'package:med_app/screens/profile/profile_screen.dart';
 import 'package:med_app/screens/dashboard/dashboard.dart';
 
 import '../size_config.dart';
@@ -17,7 +16,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _children = [
     DashBoard(),
     AddRecord(),
-    Profile(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -31,16 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
+            icon: Icon(Icons.person),
+            label: "View Record",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_box),
             label: "Add record",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "Profile",
           ),
         ],
       ),

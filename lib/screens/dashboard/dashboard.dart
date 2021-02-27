@@ -14,17 +14,15 @@ class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: new NavDrawer(),
       appBar: AppBar(
         title: Text(
-          "Home",
+          "View Record",
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.w600,
           ),
         ),
         toolbarHeight: SizeConfig.screenHeight * 0.1,
-        actions: SideIcons(),
       ),
       body: Body(),
     );
