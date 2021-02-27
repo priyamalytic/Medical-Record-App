@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/constants.dart';
+import 'package:med_app/screens/add_record/addRecord.dart';
 import 'package:med_app/screens/profile/profile_screen.dart';
-import 'package:med_app/screens/timeTable/time_table_screen.dart';
 import 'package:med_app/screens/dashboard/dashboard.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     DashBoard(),
-    TimeTable(),
+    AddRecord(),
     Profile(),
   ];
   @override
@@ -31,8 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.watch_later_rounded),
-            label: "Time Table",
+            icon: Icon(Icons.add_box),
+            label: "Add record",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

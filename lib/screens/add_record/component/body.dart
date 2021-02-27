@@ -10,7 +10,7 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text("View Patient History"),
+        child: Text("Add Patient record."),
       ),
     );
   }

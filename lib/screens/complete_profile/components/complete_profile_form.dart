@@ -15,12 +15,16 @@ class CompleteProfileForm extends StatefulWidget {
 class _CompleteProfileFormState extends State<CompleteProfileForm> {
   final _formKey = GlobalKey<FormState>();
   final List<String> errors = [];
-  String firstName;
-  String lastName;
+  // String firstName;
+  // String lastName;
   String fullName;
   String phoneNumber;
   String address;
+  bool diabeticYes = false;
+  bool diabeticNo = false;
 
+  List<String> spinnerItems = ['One', 'Two', 'Three', 'Four', 'Five'];
+  String dropdownValue = 'One';
   void addError({String error}) {
     if (!errors.contains(error))
       setState(() {
@@ -44,7 +48,96 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
           buildFullNameFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
           buildPhoneNumberFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          SizedBox(height: getProportionateScreenHeight(25)),
+          Row(
+            children: [
+              Row(
+                children: [
+                  SizedBox(
+                    width: getProportionateScreenWidth(15),
+                  ),
+                  Text(
+                    "Are you Diabetic: ",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                    ),
+                  ),
+                  SizedBox(
+                    width: getProportionateScreenWidth(7),
+                  ),
+                  Checkbox(
+                    value: diabeticYes,
+                    activeColor: kPrimaryColor,
+                    onChanged: (value) {
+                      setState(() {
+                        diabeticYes = value;
+                      });
+                    },
+                  ),
+                  Text("Yes"),
+                  SizedBox(
+                    width: getProportionateScreenWidth(5),
+                  ),
+                  Checkbox(
+                    value: diabeticNo,
+                    activeColor: kPrimaryColor,
+                    onChanged: (value) {
+                      setState(() {
+                        diabeticNo = value;
+                      });
+                    },
+                  ),
+                  Text("No"),
+                ],
+              ),
+            ],
+          ),
+          // Row(
+          //   children: [
+          //     Row(
+          //       children: [
+          //         SizedBox(
+          //           width: getProportionateScreenWidth(15),
+          //         ),
+          //         Text(
+          //           "Blood Group: ",
+          //           style: TextStyle(
+          //             fontWeight: FontWeight.bold,
+          //             fontSize: 17,
+          //           ),
+          //         ),
+          //         SizedBox(
+          //           width: getProportionateScreenWidth(7),
+          //         ),
+          //         DropdownButton<String>(
+          //           value: dropdownValue,
+          //           icon: Icon(Icons.arrow_drop_down),
+          //           iconSize: 24,
+          //           elevation: 16,
+          //           style: TextStyle(color: Colors.red, fontSize: 18),
+          //           underline: Container(
+          //             height: 2,
+          //             color: Colors.deepPurpleAccent,
+          //           ),
+          //           onChanged: (String data) {
+          //             setState(() {
+          //               dropdownValue = data;
+          //             });
+          //           },
+          //           items: spinnerItems
+          //               .map<DropdownMenuItem<String>>((String value) {
+          //             return DropdownMenuItem<String>(
+          //               value: value,
+          //               child: Text(value),
+          //             );
+          //           }).toList(),
+          //         ),
+          //       ],
+          //     ),
+          //   ],
+          // ),
+          SizedBox(height: getProportionateScreenHeight(25)),
           buildAddressFormField(),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(40)),
@@ -113,42 +206,42 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
     );
   }
 
-  TextFormField buildLastNameFormField() {
-    return TextFormField(
-      onSaved: (newValue) => lastName = newValue,
-      decoration: InputDecoration(
-        labelText: "Last Name",
-        hintText: "Enter your last name",
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/User.svg"),
-      ),
-    );
-  }
-
-  TextFormField buildFirstNameFormField() {
-    return TextFormField(
-      onSaved: (newValue) => firstName = newValue,
-      onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(error: kNamelNullError);
-        }
-        return null;
-      },
-      validator: (value) {
-        if (value.isEmpty) {
-          addError(error: kNamelNullError);
-          return "";
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        labelText: "First Name",
-        hintText: "Enter your first name",
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/User.svg"),
-      ),
-    );
-  }
+  // TextFormField buildLastNameFormField() {
+  //   return TextFormField(
+  //     onSaved: (newValue) => lastName = newValue,
+  //     decoration: InputDecoration(
+  //       labelText: "Last Name",
+  //       hintText: "Enter your last name",
+  //       floatingLabelBehavior: FloatingLabelBehavior.always,
+  //       suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/User.svg"),
+  //     ),
+  //   );
+  // }
+  //
+  // TextFormField buildFirstNameFormField() {
+  //   return TextFormField(
+  //     onSaved: (newValue) => firstName = newValue,
+  //     onChanged: (value) {
+  //       if (value.isNotEmpty) {
+  //         removeError(error: kNamelNullError);
+  //       }
+  //       return null;
+  //     },
+  //     validator: (value) {
+  //       if (value.isEmpty) {
+  //         addError(error: kNamelNullError);
+  //         return "";
+  //       }
+  //       return null;
+  //     },
+  //     decoration: InputDecoration(
+  //       labelText: "First Name",
+  //       hintText: "Enter your first name",
+  //       floatingLabelBehavior: FloatingLabelBehavior.always,
+  //       suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/User.svg"),
+  //     ),
+  //   );
+  // }
 
   TextFormField buildFullNameFormField() {
     return TextFormField(

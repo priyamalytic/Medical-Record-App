@@ -16,7 +16,7 @@ class _ProfileState extends State<Profile> {
       drawer: new NavDrawer(),
       appBar: AppBar(
         title: Text(
-          "Dashboard",
+          "Profile",
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.w600,

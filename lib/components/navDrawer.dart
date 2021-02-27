@@ -63,48 +63,6 @@ class NavDrawer extends StatelessWidget {
                 color: kSecondaryColor.withOpacity(0.3),
               ),
               child: Icon(
-                Icons.dashboard,
-                color: Colors.black87,
-              ),
-            ),
-            title: Text(
-              'Dashboard',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            onTap: () => {},
-          ),
-          ListTile(
-            leading: Container(
-              height: getProportionateScreenHeight(50),
-              width: getProportionateScreenWidth(40),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: kSecondaryColor.withOpacity(0.3),
-              ),
-              child: Icon(
-                Icons.verified_user,
-                color: Colors.black87,
-              ),
-            ),
-            title: Text(
-              'Attendance',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            onTap: () => {Navigator.of(context).pop()},
-          ),
-          ListTile(
-            leading: Container(
-              height: getProportionateScreenHeight(50),
-              width: getProportionateScreenWidth(40),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: kSecondaryColor.withOpacity(0.3),
-              ),
-              child: Icon(
                 Icons.settings,
                 color: Colors.black87,
               ),
