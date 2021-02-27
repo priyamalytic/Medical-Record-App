@@ -14,6 +14,11 @@ class _BodyState extends State<Body> {
   final _formKey = GlobalKey<FormState>();
   final List<String> errors = [];
   String patientId;
+  String patientName;
+  String patientAddress;
+  String patientHealthCondition;
+  String diabeticValueChoose;
+  String bloodGroupValueChoose;
 
   void addError({String error}) {
     if (!errors.contains(error))
@@ -40,7 +45,7 @@ class _BodyState extends State<Body> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: getProportionateScreenHeight(150)),
+                SizedBox(height: getProportionateScreenHeight(10)),
                 Text(
                   "Add Patient record.",
                   style: TextStyle(
@@ -51,7 +56,45 @@ class _BodyState extends State<Body> {
                 ),
                 SizedBox(height: getProportionateScreenHeight(40)),
                 buildPatientIdFormField(),
-                SizedBox(height: getProportionateScreenHeight(40)),
+                SizedBox(height: getProportionateScreenHeight(30)),
+                buildPatientNameFormField(),
+                SizedBox(height: getProportionateScreenHeight(30)),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: getProportionateScreenWidth(10),
+                    ),
+                    Text(
+                      "Blood Group: ",
+                      style: TextStyle(fontSize: 21),
+                    ),
+                    SizedBox(
+                      width: getProportionateScreenWidth(25),
+                    ),
+                    bloodGroupDropDownMenu(),
+                  ],
+                ),
+                SizedBox(height: getProportionateScreenHeight(20)),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: getProportionateScreenWidth(10),
+                    ),
+                    Text(
+                      "Diabetic: ",
+                      style: TextStyle(fontSize: 21),
+                    ),
+                    SizedBox(
+                      width: getProportionateScreenWidth(68),
+                    ),
+                    diabeticDropDownMenu(),
+                  ],
+                ),
+                SizedBox(height: getProportionateScreenHeight(20)),
+                buildAddressFormField(),
+                SizedBox(height: getProportionateScreenHeight(25)),
+                buildHealthConditionFormField(),
+                SizedBox(height: getProportionateScreenHeight(25)),
                 DefaultButton(
                   text: "Continue",
                   press: () {
@@ -89,6 +132,167 @@ class _BodyState extends State<Body> {
         hintText: "Enter Patient Id",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/User.svg"),
+      ),
+    );
+  }
+
+  TextFormField buildPatientNameFormField() {
+    return TextFormField(
+      onSaved: (newValue) => patientName = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kPatientIdNullError);
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kPatientIdNullError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Name",
+        hintText: "Enter Patient Name",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/User.svg"),
+      ),
+    );
+  }
+
+  List bloodGroupItems = ["  A+", "  B+", "  O+"];
+
+  bloodGroupDropDownMenu() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 4),
+      child: Container(
+        padding: EdgeInsets.only(
+          left: 10,
+        ),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.grey,
+          ),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: DropdownButton(
+          hint: Text("Blood Group"),
+          dropdownColor: Colors.white,
+          icon: Icon(Icons.arrow_drop_down_outlined),
+          iconSize: 25,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+          ),
+          // isExpanded: true,
+          underline: SizedBox(),
+          value: bloodGroupValueChoose,
+          onChanged: (newValue) {
+            setState(() {
+              bloodGroupValueChoose = newValue;
+            });
+          },
+          items: bloodGroupItems.map((valueItem) {
+            return DropdownMenuItem(
+              value: valueItem,
+              child: Text(valueItem),
+            );
+          }).toList(),
+        ),
+      ),
+    );
+  }
+
+  List diabeticItems = ["  No", "  Type 1", "  Type 2", "  Type 3"];
+
+  diabeticDropDownMenu() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 4),
+      child: Container(
+        padding: EdgeInsets.only(
+          left: 10,
+        ),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.grey,
+          ),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: DropdownButton(
+          hint: Text("Select Option"),
+          dropdownColor: Colors.white,
+          icon: Icon(Icons.arrow_drop_down_outlined),
+          iconSize: 25,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+          ),
+          // isExpanded: true,
+          underline: SizedBox(),
+          value: diabeticValueChoose,
+          onChanged: (newValue) {
+            setState(() {
+              diabeticValueChoose = newValue;
+            });
+          },
+          items: diabeticItems.map((valueItem) {
+            return DropdownMenuItem(
+              value: valueItem,
+              child: Text(valueItem),
+            );
+          }).toList(),
+        ),
+      ),
+    );
+  }
+
+  TextFormField buildAddressFormField() {
+    return TextFormField(
+      onSaved: (newValue) => patientAddress = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kPatientIdNullError);
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kPatientIdNullError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Address",
+        hintText: "Enter Patient Address",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: Icon(Icons.home),
+      ),
+    );
+  }
+
+  buildHealthConditionFormField() {
+    return TextFormField(
+      onSaved: (newValue) => patientHealthCondition = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kPatientIdNullError);
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kPatientIdNullError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Health Condition",
+        hintText: "Enter Patient Health Condition",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: Icon(Icons.healing),
       ),
     );
   }
