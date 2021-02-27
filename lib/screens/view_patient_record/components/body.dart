@@ -7,6 +7,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  // todo: add values to these variables
   String _nameValue = "";
   String _patientIdValue = "";
   String _bloodGroupValue = "";
