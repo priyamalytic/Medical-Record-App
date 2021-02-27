@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/routes.dart';
+import 'package:med_app/screens/homeScreen.dart';
 import 'package:med_app/theme.dart';
-import 'package:med_app/screens/sign_in/sign_in_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Medical Record App',
       theme: theme(),
-      initialRoute: SignInScreen.routeName,
+      initialRoute: HomeScreen.routeName,
       routes: routes,
     );
   }

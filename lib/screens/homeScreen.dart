@@ -4,6 +4,8 @@ import 'package:med_app/screens/add_record/addRecord.dart';
 import 'package:med_app/screens/profile/profile_screen.dart';
 import 'package:med_app/screens/dashboard/dashboard.dart';
 
+import '../size_config.dart';
+
 class HomeScreen extends StatefulWidget {
   static String routeName = "/homeScreen";
   @override
@@ -19,6 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
