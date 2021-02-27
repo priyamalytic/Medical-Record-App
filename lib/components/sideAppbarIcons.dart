@@ -16,7 +16,6 @@ List<Widget> SideIcons() {
         ),
         child: GestureDetector(
           onTap: () {},
-          // child: SvgPicture.asset("assets/icons/Bell.svg"),
           child: Icon(Icons.notifications),
         ),
       ),

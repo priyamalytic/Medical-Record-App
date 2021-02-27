@@ -19,37 +19,9 @@ class Body extends StatelessWidget {
               children: [
                 SizedBox(height: SizeConfig.screenHeight * 0.02),
                 Text("Register Account", style: headingStyle),
-                Text(
-                  "Complete your details or continue \nwith social media",
-                  textAlign: TextAlign.center,
-                ),
                 SizedBox(height: SizeConfig.screenHeight * 0.05),
                 SignUpForm(),
                 SizedBox(height: SizeConfig.screenHeight * 0.04),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    socialCard(
-                      icon: "assets/icons/google-icon.svg",
-                      press: () {},
-                    ),
-                    SizedBox(
-                      width: SizeConfig.screenWidth * 0.01,
-                    ),
-                    socialCard(
-                      icon: "assets/icons/facebook-2.svg",
-                      press: () {},
-                    ),
-                    SizedBox(
-                      width: SizeConfig.screenWidth * 0.01,
-                    ),
-                    socialCard(
-                      icon: "assets/icons/twitter.svg",
-                      press: () {},
-                    ),
-                  ],
-                ),
-                SizedBox(height: getProportionateScreenHeight(20)),
                 Text(
                   'By continuing your confirm that you agree \nwith our Term and Condition',
                   textAlign: TextAlign.center,
