@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:med_app/components/custom_surfix_icon.dart';
+import 'package:med_app/classes/GetRecord.dart';
 import 'package:med_app/components/default_button.dart';
+import 'package:med_app/screens/view_patient_record/viewPatientRecord.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -13,7 +16,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   final _formKey = GlobalKey<FormState>();
   final List<String> errors = [];
-  String patientId;
+  final TextEditingController _patientId = TextEditingController();
 
   void addError({String error}) {
     if (!errors.contains(error))
@@ -46,6 +49,7 @@ class _BodyState extends State<Body> {
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
+                    color: Colors.black,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -54,9 +58,25 @@ class _BodyState extends State<Body> {
                 SizedBox(height: getProportionateScreenHeight(40)),
                 DefaultButton(
                   text: "Continue",
-                  press: () {
+                  press: () async {
                     if (_formKey.currentState.validate()) {
                       // next page
+
+                      var x = await getRecord(_patientId.text);
+                      print(x["body"]);
+                      var jsonData = x["body"];
+                      var data = json.decode(jsonData);
+                      //print(parsedJson['patient_name']);
+
+                      Navigator.pushNamed(context, ViewPatientRecord.routeName,
+                          arguments: {
+                            "name": data['patient_name'],
+                            "blood_group": data['blood_group'],
+                            "diabetes": data['diabetes'],
+                            "address": data['address'],
+                            "health": data['health_condition'],
+                            "phone": data['phone']
+                          });
                     }
                   },
                 ),
@@ -70,7 +90,7 @@ class _BodyState extends State<Body> {
 
   TextFormField buildPatientIdFormField() {
     return TextFormField(
-      onSaved: (newValue) => patientId = newValue,
+      controller: _patientId,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kAddressNullError);
@@ -86,9 +106,15 @@ class _BodyState extends State<Body> {
       },
       decoration: InputDecoration(
         labelText: "Patient Id",
+        labelStyle: TextStyle(
+          color: Colors.black,
+        ),
         hintText: "Enter Patient Id",
+        hintStyle: TextStyle(
+          color: Colors.black,
+        ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/User.svg"),
+        suffixIcon: Icon(Icons.person),
       ),
     );
   }
