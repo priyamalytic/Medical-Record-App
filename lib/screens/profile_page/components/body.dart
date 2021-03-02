@@ -9,7 +9,6 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   // todo: add values to these variables
   String _nameValue = "";
-  String _patientIdValue = "";
   String _bloodGroupValue = "";
   String _phoneNumberValue = "";
   String _diabeticValue = "";
@@ -33,54 +32,58 @@ class _BodyState extends State<Body> {
       child: SafeArea(
         child: Container(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14.0),
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                propertyNameContainer("Name"),
+                SizedBox(
+                  height: getProportionateScreenHeight(10),
+                ),
+                valueContainer("$_nameValue"),
+                SizedBox(
+                  height: getProportionateScreenHeight(25),
+                ),
+                propertyNameContainer("Blood Group"),
+                SizedBox(
+                  height: getProportionateScreenHeight(10),
+                ),
+                valueContainer("$_bloodGroupValue"),
                 SizedBox(
                   height: getProportionateScreenHeight(30),
                 ),
-                Text(
-                  "Patient Profile",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+                propertyNameContainer("Diabetic"),
+                SizedBox(
+                  height: getProportionateScreenHeight(10),
                 ),
+                valueContainer("$_diabeticValue"),
                 SizedBox(
                   height: getProportionateScreenHeight(30),
                 ),
-                valueContainer("Name", "$_nameValue", 30.0, 22.0),
+                propertyNameContainer("Phone Number"),
+                SizedBox(
+                  height: getProportionateScreenHeight(10),
+                ),
+                valueContainer("$_phoneNumberValue"),
                 SizedBox(
                   height: getProportionateScreenHeight(30),
                 ),
-                // Container(
-                //   child: Text("hello"),
-                // ),
+                propertyNameContainer("Health Condition"),
+                SizedBox(
+                  height: getProportionateScreenHeight(10),
+                ),
+                valueContainer("$_healthConditionValue"),
                 SizedBox(
                   height: getProportionateScreenHeight(30),
                 ),
-                valueContainer("Blood Group", "$_bloodGroupValue", 22.0, 25.0),
+                propertyNameContainer("Address"),
+                SizedBox(
+                  height: getProportionateScreenHeight(10),
+                ),
+                valueContainer("$_addressValue"),
                 SizedBox(
                   height: getProportionateScreenHeight(30),
                 ),
-                valueContainer("Diabetic", "$_diabeticValue", 25.0, 22.0),
-                SizedBox(
-                  height: getProportionateScreenHeight(30),
-                ),
-                valueContainer(
-                    "Phone Number", "$_phoneNumberValue", 22.0, 17.0),
-                SizedBox(
-                  height: getProportionateScreenHeight(30),
-                ),
-                BigValueContainer(
-                    "Health Condition", "$_healthConditionValue", 22.0, 18.0),
-                SizedBox(
-                  height: getProportionateScreenHeight(30),
-                ),
-                BigValueContainer("Address", "$_addressValue", 22.0, 18.0),
               ],
             ),
           ),
@@ -89,8 +92,7 @@ class _BodyState extends State<Body> {
     );
   }
 
-  Container valueContainer(String property, String value,
-      double propertyFontSize, double valueFontSize) {
+  Container valueContainer(String value) {
     return Container(
       padding: EdgeInsets.only(left: 25, right: 10, bottom: 10, top: 10),
       decoration: BoxDecoration(
@@ -103,33 +105,9 @@ class _BodyState extends State<Body> {
         children: [
           Flexible(
             flex: 2,
-            child: Text(
-              "$property",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: propertyFontSize,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          Flexible(
-            child: Text(
-              " :",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: propertyFontSize,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          SizedBox(
-            width: getProportionateScreenWidth(18),
-          ),
-          Flexible(
-            flex: 2,
             child: Text("$value",
                 style: TextStyle(
-                  fontSize: valueFontSize,
+                  fontSize: 22.0,
                   color: Colors.black,
                 )),
           ),
@@ -138,54 +116,23 @@ class _BodyState extends State<Body> {
     );
   }
 
-  // ignore: non_constant_identifier_names
-  Container BigValueContainer(String property, String value,
-      double propertyFontSize, double valueFontSize) {
-    return Container(
-      padding: EdgeInsets.only(left: 25, right: 10, bottom: 10, top: 10),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.black54,
+  Row propertyNameContainer(String _propertyName) {
+    return Row(
+      children: [
+        SizedBox(
+          width: getProportionateScreenWidth(15),
         ),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        children: [
-          Flexible(
-            fit: FlexFit.tight,
-            flex: 2,
-            child: Text(
-              "$property",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: propertyFontSize,
-                color: Colors.black,
-              ),
+        Container(
+          child: Text(
+            _propertyName,
+            style: TextStyle(
+              fontSize: 25.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
           ),
-          Flexible(
-            child: Text(
-              " :",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: propertyFontSize,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          SizedBox(
-            width: getProportionateScreenWidth(18),
-          ),
-          Flexible(
-            flex: 2,
-            child: Text("$value",
-                style: TextStyle(
-                  fontSize: valueFontSize,
-                  color: Colors.black,
-                )),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
