@@ -41,7 +41,7 @@ class _BodyState extends State<Body> {
                 height: getProportionateScreenHeight(30),
               ),
               Text(
-                "Patient Record",
+                "Patient Profile",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 40,
