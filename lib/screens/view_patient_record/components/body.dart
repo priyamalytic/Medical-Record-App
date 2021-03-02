@@ -1,6 +1,10 @@
-import 'package:med_app/classes/GetRecord.dart';
-import 'package:med_app/size_config.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:med_app/classes/GetRecord.dart';
+import 'package:med_app/components/default_button.dart';
+import 'package:med_app/screens/view_patient_record/viewPatientRecord.dart';
+import '../../../constants.dart';
+import '../../../size_config.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -8,181 +12,107 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  // todo: add values to these variables
-  String _nameValue = "";
-  String _patientIdValue = "";
-  String _bloodGroupValue = "";
-  String _phoneNumberValue = "";
-  String _diabeticValue = "";
-  String _addressValue = "";
-  String _healthConditionValue = "";
+  final _formKey = GlobalKey<FormState>();
+  final List<String> errors = [];
+  final TextEditingController _patientId = TextEditingController();
+
+  void addError({String error}) {
+    if (!errors.contains(error))
+      setState(() {
+        errors.add(error);
+      });
+  }
+
+  void removeError({String error}) {
+    if (errors.contains(error))
+      setState(() {
+        errors.remove(error);
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, Object> rcvdData =
-        ModalRoute.of(context).settings.arguments;
-    print("rcvd fdata ${rcvdData['name']}");
-
-    _nameValue = rcvdData['name'];
-    _addressValue = rcvdData['address'];
-    _bloodGroupValue = rcvdData['blood_group'];
-    _diabeticValue = rcvdData['diabetes'];
-    _healthConditionValue = rcvdData['health'];
-    _phoneNumberValue = rcvdData['phone'];
-
-    return SingleChildScrollView(
-      child: Container(
+    return Container(
+      child: Form(
+        key: _formKey,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              Text(
-                "Patient Profile",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+          padding:
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: getProportionateScreenHeight(150)),
+                Text(
+                  "View Patient record.",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-              ),
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              valueContainer("Name", "$_nameValue", 30.0, 22.0),
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              // Container(
-              //   child: Text("hello"),
-              // ),
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              valueContainer("Blood Group", "$_bloodGroupValue", 22.0, 25.0),
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              valueContainer("Diabetic", "$_diabeticValue", 25.0, 22.0),
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              valueContainer("Phone Number", "$_phoneNumberValue", 22.0, 17.0),
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              BigValueContainer(
-                  "Health Condition", "$_healthConditionValue", 22.0, 18.0),
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              BigValueContainer("Address", "$_addressValue", 22.0, 18.0),
-            ],
+                SizedBox(height: getProportionateScreenHeight(40)),
+                buildPatientIdFormField(),
+                SizedBox(height: getProportionateScreenHeight(40)),
+                DefaultButton(
+                  text: "Continue",
+                  // press: () async {
+                  //   if (_formKey.currentState.validate()) {
+                  //     // next page
+                  //
+                  //     var x = await getRecord(_patientId.text);
+                  //     print(x["body"]);
+                  //     var jsonData = x["body"];
+                  //     var data = json.decode(jsonData);
+                  //     //print(parsedJson['patient_name']);
+                  //
+                  //     Navigator.pushNamed(context, ViewPatientRecord.routeName,
+                  //         arguments: {
+                  //           "name": data['patient_name'],
+                  //           "blood_group": data['blood_group'],
+                  //           "diabetes": data['diabetes'],
+                  //           "address": data['address'],
+                  //           "health": data['health_condition'],
+                  //           "phone": data['phone']
+                  //         });
+                  //   }
+                  // },
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Container valueContainer(String property, String value,
-      double propertyFontSize, double valueFontSize) {
-    return Container(
-      padding: EdgeInsets.only(left: 25, right: 10, bottom: 10, top: 10),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.black54,
+  TextFormField buildPatientIdFormField() {
+    return TextFormField(
+      controller: _patientId,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kAddressNullError);
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kAddressNullError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Patient Id",
+        labelStyle: TextStyle(
+          color: Colors.black,
         ),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        children: [
-          Flexible(
-            flex: 2,
-            child: Text(
-              "$property",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: propertyFontSize,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          Flexible(
-            child: Text(
-              " :",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: propertyFontSize,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          SizedBox(
-            width: getProportionateScreenWidth(18),
-          ),
-          Flexible(
-            flex: 2,
-            child: Text("$value",
-                style: TextStyle(
-                  fontSize: valueFontSize,
-                  color: Colors.black,
-                )),
-          ),
-        ],
-      ),
-    );
-  }
-
-  // ignore: non_constant_identifier_names
-  Container BigValueContainer(String property, String value,
-      double propertyFontSize, double valueFontSize) {
-    return Container(
-      padding: EdgeInsets.only(left: 25, right: 10, bottom: 10, top: 10),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.black54,
+        hintText: "Enter Patient Id",
+        hintStyle: TextStyle(
+          color: Colors.black,
         ),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        children: [
-          Flexible(
-            fit: FlexFit.tight,
-            flex: 2,
-            child: Text(
-              "$property",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: propertyFontSize,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          Flexible(
-            child: Text(
-              " :",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: propertyFontSize,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          SizedBox(
-            width: getProportionateScreenWidth(18),
-          ),
-          Flexible(
-            flex: 2,
-            child: Text("$value",
-                style: TextStyle(
-                  fontSize: valueFontSize,
-                  color: Colors.black,
-                )),
-          ),
-        ],
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: Icon(Icons.person),
       ),
     );
   }
