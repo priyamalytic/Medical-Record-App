@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/classes/CreateProfile.dart';
 import 'package:med_app/components/default_button.dart';
-import 'package:med_app/screens/dashboard/dashboard.dart';
 import 'package:med_app/screens/homeScreen.dart';
-
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -22,10 +20,12 @@ class ListItem {
 class _BodyState extends State<Body> {
   final _formKey = GlobalKey<FormState>();
   final List<String> errors = [];
-  final TextEditingController _patientName = TextEditingController();
-  final TextEditingController _patientAddress = TextEditingController();
-  final TextEditingController _phoneNo = TextEditingController();
-  final TextEditingController _patientHealthCondition = TextEditingController();
+  final TextEditingController _patientNameController = TextEditingController();
+  final TextEditingController _patientAddressController =
+      TextEditingController();
+  final TextEditingController _phoneNoController = TextEditingController();
+  final TextEditingController _patientHealthConditionController =
+      TextEditingController();
 
   List<ListItem> _bloodGroupDropdownItems = [
     ListItem(1, "  A+"),
@@ -59,17 +59,17 @@ class _BodyState extends State<Body> {
       });
   }
 
-  List<DropdownMenuItem<ListItem>> _bloogGroupDropdownMenuItems;
+  List<DropdownMenuItem<ListItem>> _bloodGroupDropdownMenuItems;
   List<DropdownMenuItem<ListItem>> _diabetesDropdownMenuItems;
   ListItem _bloodGroupSelectedItem;
   ListItem _diabetesSelectedItem;
 
   void initState() {
     super.initState();
-    _bloogGroupDropdownMenuItems =
+    _bloodGroupDropdownMenuItems =
         buildDropDownMenuItems(_bloodGroupDropdownItems);
     _diabetesDropdownMenuItems = buildDropDownMenuItems(_diabetesDropdownItems);
-    _bloodGroupSelectedItem = _bloogGroupDropdownMenuItems[0].value;
+    _bloodGroupSelectedItem = _bloodGroupDropdownMenuItems[0].value;
     _diabetesSelectedItem = _diabetesDropdownMenuItems[0].value;
   }
 
@@ -160,20 +160,20 @@ class _BodyState extends State<Body> {
                   text: "Submit",
                   press: () async {
                     if (_formKey.currentState.validate()) {
-                      print(_patientName.text +
-                          _phoneNo.text +
-                          _patientAddress.text +
+                      print(_patientNameController.text +
+                          _phoneNoController.text +
+                          _patientAddressController.text +
                           _bloodGroupSelectedItem.name +
                           _diabetesSelectedItem.name +
-                          _patientHealthCondition.text);
+                          _patientHealthConditionController.text);
 
                       var x = await createProfile(
-                          _patientName.text,
-                          _phoneNo.text,
-                          _patientAddress.text,
+                          _patientNameController.text,
+                          _phoneNoController.text,
+                          _patientAddressController.text,
                           _bloodGroupSelectedItem.name,
                           _diabetesSelectedItem.name,
-                          _patientHealthCondition.text);
+                          _patientHealthConditionController.text);
 
                       print(x["body"]);
                       if (x["statusCode"] == 200) {
@@ -193,7 +193,7 @@ class _BodyState extends State<Body> {
 
   TextFormField buildPatientNameFormField() {
     return TextFormField(
-      controller: _patientName,
+      controller: _patientNameController,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPatientIdNullError);
@@ -224,7 +224,7 @@ class _BodyState extends State<Body> {
 
   TextFormField buildPhoneFormField() {
     return TextFormField(
-      controller: _phoneNo,
+      controller: _phoneNoController,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPhoneNumberNullError);
@@ -294,7 +294,7 @@ class _BodyState extends State<Body> {
           // isExpanded: true,
           underline: SizedBox(),
           value: _bloodGroupSelectedItem,
-          items: _bloogGroupDropdownMenuItems,
+          items: _bloodGroupDropdownMenuItems,
           onChanged: (newValue) {
             setState(() {
               _bloodGroupSelectedItem = newValue;
@@ -350,7 +350,7 @@ class _BodyState extends State<Body> {
 
   TextFormField buildAddressFormField() {
     return TextFormField(
-      controller: _patientAddress,
+      controller: _patientAddressController,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPatientIdNullError);
@@ -409,7 +409,7 @@ class _BodyState extends State<Body> {
 
   buildHealthConditionFormField() {
     return TextFormField(
-      controller: _patientHealthCondition,
+      controller: _patientHealthConditionController,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPatientIdNullError);
