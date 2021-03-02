@@ -56,6 +56,7 @@ class _BodyState extends State<Body> {
                 SizedBox(height: getProportionateScreenHeight(40)),
                 DefaultButton(
                   text: "Continue",
+                  press: () {},
                   // press: () async {
                   //   if (_formKey.currentState.validate()) {
                   //     // next page
