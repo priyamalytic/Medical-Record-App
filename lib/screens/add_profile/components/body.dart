@@ -20,12 +20,11 @@ class ListItem {
 class _BodyState extends State<Body> {
   final _formKey = GlobalKey<FormState>();
   final List<String> errors = [];
-  final TextEditingController _patientNameController = TextEditingController();
-  final TextEditingController _patientAddressController =
-      TextEditingController();
-  final TextEditingController _phoneNoController = TextEditingController();
-  final TextEditingController _patientHealthConditionController =
-      TextEditingController();
+  TextEditingController _patientNameController = new TextEditingController();
+  TextEditingController _patientAddressController = new TextEditingController();
+  TextEditingController _phoneNoController = new TextEditingController();
+  TextEditingController _patientHealthConditionController =
+      new TextEditingController();
 
   List<ListItem> _bloodGroupDropdownItems = [
     ListItem(1, "  A+"),

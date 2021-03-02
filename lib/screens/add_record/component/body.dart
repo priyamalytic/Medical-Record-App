@@ -12,11 +12,11 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   final _formKey = GlobalKey<FormState>();
   final List<String> errors = [];
-  final TextEditingController _doctorNameController = TextEditingController();
-  final TextEditingController _remarksController = TextEditingController();
-  final TextEditingController _medicationController = TextEditingController();
-  final TextEditingController _patientIdController = TextEditingController();
-  final TextEditingController _diseaseController = TextEditingController();
+  TextEditingController _doctorNameController = new TextEditingController();
+  TextEditingController _remarksController = new TextEditingController();
+  TextEditingController _medicationController = new TextEditingController();
+  TextEditingController _patientIdController = new TextEditingController();
+  TextEditingController _diseaseController = new TextEditingController();
 
   void addError({String error}) {
     if (!errors.contains(error))
