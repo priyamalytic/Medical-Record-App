@@ -10,7 +10,7 @@ class RecordPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Patient Profile",
+          "Patient Records",
           style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.w700,
