@@ -13,6 +13,15 @@ class _ViewPatientRecordState extends State<ViewPatientRecord> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "View Record",
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
         body: Body(),
       ),
     );
