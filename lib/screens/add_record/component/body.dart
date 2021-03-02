@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/classes/CreateProfile.dart';
 import 'package:med_app/components/default_button.dart';
-import 'package:med_app/screens/dashboard/dashboard.dart';
 import 'package:med_app/screens/homeScreen.dart';
 
 import '../../../constants.dart';

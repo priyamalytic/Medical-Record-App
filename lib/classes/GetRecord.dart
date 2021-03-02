@@ -20,10 +20,10 @@ dynamic getRecord(String patientId) async {
   }
 }
 
-class patient {
+class Patient {
   final String patientId;
   final int statusCode;
   final String body;
 
-  patient({this.patientId, this.body, this.statusCode});
+  Patient({this.patientId, this.body, this.statusCode});
 }
