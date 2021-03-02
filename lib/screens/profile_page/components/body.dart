@@ -30,56 +30,59 @@ class _BodyState extends State<Body> {
     _phoneNumberValue = rcvdData['phone'];
 
     return SingleChildScrollView(
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              Text(
-                "Patient Profile",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+      child: SafeArea(
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(
+                  height: getProportionateScreenHeight(30),
                 ),
-              ),
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              valueContainer("Name", "$_nameValue", 30.0, 22.0),
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              // Container(
-              //   child: Text("hello"),
-              // ),
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              valueContainer("Blood Group", "$_bloodGroupValue", 22.0, 25.0),
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              valueContainer("Diabetic", "$_diabeticValue", 25.0, 22.0),
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              valueContainer("Phone Number", "$_phoneNumberValue", 22.0, 17.0),
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              BigValueContainer(
-                  "Health Condition", "$_healthConditionValue", 22.0, 18.0),
-              SizedBox(
-                height: getProportionateScreenHeight(30),
-              ),
-              BigValueContainer("Address", "$_addressValue", 22.0, 18.0),
-            ],
+                Text(
+                  "Patient Profile",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(30),
+                ),
+                valueContainer("Name", "$_nameValue", 30.0, 22.0),
+                SizedBox(
+                  height: getProportionateScreenHeight(30),
+                ),
+                // Container(
+                //   child: Text("hello"),
+                // ),
+                SizedBox(
+                  height: getProportionateScreenHeight(30),
+                ),
+                valueContainer("Blood Group", "$_bloodGroupValue", 22.0, 25.0),
+                SizedBox(
+                  height: getProportionateScreenHeight(30),
+                ),
+                valueContainer("Diabetic", "$_diabeticValue", 25.0, 22.0),
+                SizedBox(
+                  height: getProportionateScreenHeight(30),
+                ),
+                valueContainer(
+                    "Phone Number", "$_phoneNumberValue", 22.0, 17.0),
+                SizedBox(
+                  height: getProportionateScreenHeight(30),
+                ),
+                BigValueContainer(
+                    "Health Condition", "$_healthConditionValue", 22.0, 18.0),
+                SizedBox(
+                  height: getProportionateScreenHeight(30),
+                ),
+                BigValueContainer("Address", "$_addressValue", 22.0, 18.0),
+              ],
+            ),
           ),
         ),
       ),
