@@ -31,7 +31,7 @@ class _BodyState extends State<Body> {
     _phoneNumberValue = rcvdData['phone'];
 
     return SingleChildScrollView(
-      child: SafeArea(
+      child: Container(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14.0),
           child: Column(
@@ -53,6 +53,12 @@ class _BodyState extends State<Body> {
                 height: getProportionateScreenHeight(30),
               ),
               valueContainer("Name", "$_nameValue", 30.0, 22.0),
+              SizedBox(
+                height: getProportionateScreenHeight(30),
+              ),
+              // Container(
+              //   child: Text("hello"),
+              // ),
               SizedBox(
                 height: getProportionateScreenHeight(30),
               ),

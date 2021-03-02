@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:med_app/constants.dart';
 import 'package:med_app/screens/add_record/addRecord.dart';
 import 'package:med_app/screens/dashboard/dashboard.dart';
+import 'package:med_app/screens/view_patient_record/viewPatientRecord.dart';
 
 import '../size_config.dart';
 
