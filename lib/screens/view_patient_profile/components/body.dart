@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:med_app/classes/GetRecord.dart';
 import 'package:med_app/components/default_button.dart';
+import 'package:med_app/screens/profile_page/profilePage.dart';
 import 'package:med_app/screens/view_patient_record/viewPatientRecord.dart';
 
 import '../../../constants.dart';
@@ -68,7 +69,7 @@ class _BodyState extends State<Body> {
                       var data = json.decode(jsonData);
                       //print(parsedJson['patient_name']);
 
-                      Navigator.pushNamed(context, ViewPatientRecord.routeName,
+                      Navigator.pushNamed(context, ProfilePage.routeName,
                           arguments: {
                             "name": data['patient_name'],
                             "blood_group": data['blood_group'],
