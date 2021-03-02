@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/classes/CreateProfile.dart';
 import 'package:med_app/components/default_button.dart';
+import 'package:med_app/screens/dashboard/dashboard.dart';
 import 'package:med_app/screens/homeScreen.dart';
 
 import '../../../constants.dart';
@@ -21,12 +22,10 @@ class ListItem {
 class _BodyState extends State<Body> {
   final _formKey = GlobalKey<FormState>();
   final List<String> errors = [];
-  final TextEditingController _doctorName = TextEditingController();
-  final TextEditingController _remarks = TextEditingController();
+  final TextEditingController _patientName = TextEditingController();
+  final TextEditingController _patientAddress = TextEditingController();
   final TextEditingController _phoneNo = TextEditingController();
-  final TextEditingController _medication = TextEditingController();
-  final TextEditingController _patientId = TextEditingController();
-  final TextEditingController _disease = TextEditingController();
+  final TextEditingController _patientHealthCondition = TextEditingController();
 
   List<ListItem> _bloodGroupDropdownItems = [
     ListItem(1, "  A+"),
@@ -60,10 +59,19 @@ class _BodyState extends State<Body> {
       });
   }
 
-  List<DropdownMenuItem<ListItem>> _bloodGroupDropdownMenuItems;
+  List<DropdownMenuItem<ListItem>> _bloogGroupDropdownMenuItems;
   List<DropdownMenuItem<ListItem>> _diabetesDropdownMenuItems;
   ListItem _bloodGroupSelectedItem;
   ListItem _diabetesSelectedItem;
+
+  void initState() {
+    super.initState();
+    _bloogGroupDropdownMenuItems =
+        buildDropDownMenuItems(_bloodGroupDropdownItems);
+    _diabetesDropdownMenuItems = buildDropDownMenuItems(_diabetesDropdownItems);
+    _bloodGroupSelectedItem = _bloogGroupDropdownMenuItems[0].value;
+    _diabetesSelectedItem = _diabetesDropdownMenuItems[0].value;
+  }
 
   List<DropdownMenuItem<ListItem>> buildDropDownMenuItems(List listItems) {
     List<DropdownMenuItem<ListItem>> items = List();
@@ -89,7 +97,7 @@ class _BodyState extends State<Body> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: getProportionateScreenHeight(5)),
+                SizedBox(height: getProportionateScreenHeight(10)),
                 Text(
                   "Add Patient record.",
                   style: TextStyle(
@@ -100,38 +108,72 @@ class _BodyState extends State<Body> {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: getProportionateScreenHeight(40)),
-                buildInputFormField(
-                    "Doctor Name", "Enter Doctor Name", _doctorName, 1),
-                SizedBox(height: getProportionateScreenHeight(40)),
-                buildInputFormField(
-                    "Patient Id", "Enter Patient Id", _patientId, 1),
+                buildPatientNameFormField(),
                 SizedBox(height: getProportionateScreenHeight(30)),
-                buildInputFormField(
-                    "Disease", "Enter Disease Name", _disease, 1),
+                buildPhoneFormField(),
+                SizedBox(height: getProportionateScreenHeight(30)),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: getProportionateScreenWidth(10),
+                    ),
+                    Text(
+                      "Blood Group: ",
+                      style: TextStyle(
+                        fontSize: 21,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      width: getProportionateScreenWidth(25),
+                    ),
+                    bloodGroupDropDownMenu(),
+                  ],
+                ),
                 SizedBox(height: getProportionateScreenHeight(20)),
-                buildInputFormField("Remarks", "Enter Remarks", _remarks, 4),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: getProportionateScreenWidth(10),
+                    ),
+                    Text(
+                      "Diabetic: ",
+                      style: TextStyle(
+                        fontSize: 21,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      width: getProportionateScreenWidth(68),
+                    ),
+                    diabeticDropDownMenu(),
+                  ],
+                ),
+                SizedBox(height: getProportionateScreenHeight(20)),
+                buildAddressFormField(),
                 SizedBox(height: getProportionateScreenHeight(25)),
-                buildInputFormField(
-                    "Medication", "Enter Medication", _medication, 4),
+                buildHealthConditionFormField(),
                 SizedBox(height: getProportionateScreenHeight(25)),
                 DefaultButton(
                   text: "Submit",
                   press: () async {
                     if (_formKey.currentState.validate()) {
-                      print(_doctorName.text +
+                      print(_patientName.text +
                           _phoneNo.text +
-                          _remarks.text +
+                          _patientAddress.text +
                           _bloodGroupSelectedItem.name +
                           _diabetesSelectedItem.name +
-                          _medication.text);
+                          _patientHealthCondition.text);
 
                       var x = await createProfile(
-                          _doctorName.text,
+                          _patientName.text,
                           _phoneNo.text,
-                          _remarks.text,
+                          _patientAddress.text,
                           _bloodGroupSelectedItem.name,
                           _diabetesSelectedItem.name,
-                          _medication.text);
+                          _patientHealthCondition.text);
 
                       print(x["body"]);
                       if (x["statusCode"] == 200) {
@@ -149,11 +191,40 @@ class _BodyState extends State<Body> {
     );
   }
 
-  TextFormField buildInputFormField(String _labelText, String _hintText,
-      TextEditingController _controller, int _maxLines) {
+  TextFormField buildPatientNameFormField() {
     return TextFormField(
-      maxLines: _maxLines,
-      controller: _controller,
+      controller: _patientName,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kPatientIdNullError);
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kPatientIdNullError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Name",
+        labelStyle: TextStyle(
+          color: Colors.black,
+        ),
+        hintText: "Enter Patient Name",
+        hintStyle: TextStyle(
+          color: Colors.black,
+        ),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: Icon(Icons.person),
+      ),
+    );
+  }
+
+  TextFormField buildPhoneFormField() {
+    return TextFormField(
+      controller: _phoneNo,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPhoneNumberNullError);
@@ -168,17 +239,142 @@ class _BodyState extends State<Body> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: _labelText,
+        labelText: "Phone  Number",
         labelStyle: TextStyle(
           color: Colors.black,
-          fontSize: 18.0,
-          fontWeight: FontWeight.bold,
         ),
-        hintText: _hintText,
+        hintText: "Enter Phone Number",
         hintStyle: TextStyle(
           color: Colors.black,
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: Icon(Icons.phone),
+      ),
+    );
+  }
+
+  List bloodGroupItems = [
+    "  A+",
+    "  A-",
+    "  B+",
+    "  B-",
+    "  AB+",
+    "  AB-",
+    "  O+",
+    "  O-",
+  ];
+
+  bloodGroupDropDownMenu() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 4),
+      child: Container(
+        padding: EdgeInsets.only(
+          left: 10,
+        ),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.grey,
+          ),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: DropdownButton<ListItem>(
+          hint: Text(
+            "Blood Group",
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
+          dropdownColor: Colors.white,
+          icon: Icon(Icons.arrow_drop_down_outlined),
+          iconSize: 25,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+          ),
+          // isExpanded: true,
+          underline: SizedBox(),
+          value: _bloodGroupSelectedItem,
+          items: _bloogGroupDropdownMenuItems,
+          onChanged: (newValue) {
+            setState(() {
+              _bloodGroupSelectedItem = newValue;
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  List diabeticItems = ["  No", "  Type 1", "  Type 2", "  Type 3"];
+
+  diabeticDropDownMenu() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 4),
+      child: Container(
+        padding: EdgeInsets.only(
+          left: 10,
+        ),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.grey,
+          ),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: DropdownButton(
+          hint: Text(
+            "Select Option",
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
+          dropdownColor: Colors.white,
+          icon: Icon(Icons.arrow_drop_down_outlined),
+          iconSize: 25,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+          ),
+          // isExpanded: true,
+          underline: SizedBox(),
+          value: _diabetesSelectedItem,
+          items: _diabetesDropdownMenuItems,
+          onChanged: (newValue) {
+            setState(() {
+              _diabetesSelectedItem = newValue;
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  TextFormField buildAddressFormField() {
+    return TextFormField(
+      controller: _patientAddress,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kPatientIdNullError);
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kPatientIdNullError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Address",
+        labelStyle: TextStyle(
+          color: Colors.black,
+        ),
+        hintText: "Enter Patient Address",
+        hintStyle: TextStyle(
+          color: Colors.black,
+        ),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: Icon(Icons.home),
       ),
     );
   }
@@ -208,6 +404,37 @@ class _BodyState extends State<Body> {
       builder: (BuildContext context) {
         return alert;
       },
+    );
+  }
+
+  buildHealthConditionFormField() {
+    return TextFormField(
+      controller: _patientHealthCondition,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kPatientIdNullError);
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kPatientIdNullError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Health Condition",
+        labelStyle: TextStyle(
+          color: Colors.black,
+        ),
+        hintText: "Enter Patient Health Condition",
+        hintStyle: TextStyle(
+          color: Colors.black,
+        ),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: Icon(Icons.healing),
+      ),
     );
   }
 }
