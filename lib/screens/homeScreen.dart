@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/constants.dart';
+import 'package:med_app/screens/add_profile/addProfile.dart';
 import 'package:med_app/screens/add_record/addRecord.dart';
 import 'package:med_app/screens/view_patient_profile/viewPatientProfile.dart';
 import 'package:med_app/screens/view_patient_record/viewPatientRecord.dart';
@@ -15,8 +16,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final List<Widget> _children = [
+    ViewPatientRecord(),
     ViewPatientProfile(),
     AddRecord(),
+    AddProfile(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -32,6 +35,10 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: "View Record",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "View Profile",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_box),
