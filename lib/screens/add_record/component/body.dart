@@ -253,17 +253,6 @@ class _BodyState extends State<Body> {
     );
   }
 
-  List bloodGroupItems = [
-    "  A+",
-    "  A-",
-    "  B+",
-    "  B-",
-    "  AB+",
-    "  AB-",
-    "  O+",
-    "  O-",
-  ];
-
   bloodGroupDropDownMenu() {
     return Padding(
       padding: const EdgeInsets.only(bottom: 4),
@@ -304,8 +293,6 @@ class _BodyState extends State<Body> {
       ),
     );
   }
-
-  List diabeticItems = ["  No", "  Type 1", "  Type 2", "  Type 3"];
 
   diabeticDropDownMenu() {
     return Padding(
