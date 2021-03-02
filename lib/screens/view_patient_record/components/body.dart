@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:med_app/classes/GetRecord.dart';
 import 'package:med_app/components/default_button.dart';
+import 'package:med_app/screens/record_page/recordPage.dart';
 import 'package:med_app/screens/view_patient_record/viewPatientRecord.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -56,7 +57,9 @@ class _BodyState extends State<Body> {
                 SizedBox(height: getProportionateScreenHeight(40)),
                 DefaultButton(
                   text: "Continue",
-                  press: () {},
+                  press: () {
+                    Navigator.pushNamed(context, RecordPage.routeName);
+                  },
                   // press: () async {
                   //   if (_formKey.currentState.validate()) {
                   //     // next page
