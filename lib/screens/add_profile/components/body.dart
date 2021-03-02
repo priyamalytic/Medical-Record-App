@@ -108,9 +108,11 @@ class _BodyState extends State<Body> {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: getProportionateScreenHeight(40)),
-                buildPatientNameFormField(),
+                buildInputFormField("Patient Name", "Enter Patient Name",
+                    _patientNameController, 1),
                 SizedBox(height: getProportionateScreenHeight(30)),
-                buildPhoneFormField(),
+                buildInputFormField(
+                    "Phone", "Enter Phone Number", _phoneNoController, 1),
                 SizedBox(height: getProportionateScreenHeight(30)),
                 Row(
                   children: [
@@ -152,9 +154,14 @@ class _BodyState extends State<Body> {
                   ],
                 ),
                 SizedBox(height: getProportionateScreenHeight(20)),
-                buildAddressFormField(),
+                buildInputFormField(
+                    "Address", "Enter Address", _patientAddressController, 4),
                 SizedBox(height: getProportionateScreenHeight(25)),
-                buildHealthConditionFormField(),
+                buildInputFormField(
+                    "Health Condition",
+                    "Enter Patient Health Condition",
+                    _patientHealthConditionController,
+                    2),
                 SizedBox(height: getProportionateScreenHeight(25)),
                 DefaultButton(
                   text: "Submit",
@@ -187,6 +194,40 @@ class _BodyState extends State<Body> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  TextFormField buildInputFormField(String _labelText, String _hintText,
+      TextEditingController _controller, int _maxLines) {
+    return TextFormField(
+      maxLines: _maxLines,
+      controller: _controller,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kPhoneNumberNullError);
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kPhoneNumberNullError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: _labelText,
+        labelStyle: TextStyle(
+          color: Colors.black,
+          fontSize: 18.0,
+          fontWeight: FontWeight.bold,
+        ),
+        hintText: _hintText,
+        hintStyle: TextStyle(
+          color: Colors.black,
+        ),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
       ),
     );
   }
