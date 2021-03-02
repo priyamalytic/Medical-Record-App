@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/constants.dart';
 import 'package:med_app/screens/add_record/addRecord.dart';
-import 'package:med_app/screens/dashboard/dashboard.dart';
+import 'package:med_app/screens/view_patient_profile/viewPatientProfile.dart';
 import 'package:med_app/screens/view_patient_record/viewPatientRecord.dart';
 
 import '../size_config.dart';
@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    DashBoard(),
+    ViewPatientProfile(),
     AddRecord(),
   ];
   @override

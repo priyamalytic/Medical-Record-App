@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:med_app/screens/dashboard/components/body.dart';
+import 'package:med_app/screens/view_patient_profile/components/body.dart';
 import 'package:med_app/size_config.dart';
 
-class DashBoard extends StatefulWidget {
-  static String routeName = "/dashboard";
+class ViewPatientProfile extends StatefulWidget {
+  static String routeName = "/viewPatientProfile";
   @override
-  _DashBoardState createState() => _DashBoardState();
+  _ViewPatientProfileState createState() => _ViewPatientProfileState();
 }
 
-class _DashBoardState extends State<DashBoard> {
+class _ViewPatientProfileState extends State<ViewPatientProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
