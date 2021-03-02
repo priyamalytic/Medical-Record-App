@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: kPrimaryColor,
+        unselectedItemColor: kSecondaryColor,
         onTap: onTabTapped, // new
         currentIndex: _currentIndex,
         items: [
@@ -43,6 +44,10 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.add_box),
             label: "Add record",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_box),
+            label: "Add Profile",
           ),
         ],
       ),
