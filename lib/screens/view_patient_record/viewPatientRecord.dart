@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/screens/view_patient_record/components/body.dart';
 
+import '../../size_config.dart';
+
 class ViewPatientRecord extends StatefulWidget {
   static String routeName = "/viewPatientRecord";
 
@@ -21,6 +23,7 @@ class _ViewPatientRecordState extends State<ViewPatientRecord> {
               fontWeight: FontWeight.w600,
             ),
           ),
+          toolbarHeight: SizeConfig.screenHeight * 0.1,
         ),
         body: Body(),
       ),

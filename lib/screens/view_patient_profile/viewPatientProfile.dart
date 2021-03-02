@@ -14,7 +14,7 @@ class _ViewPatientProfileState extends State<ViewPatientProfile> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "View Record",
+          "View Profile",
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.w600,
