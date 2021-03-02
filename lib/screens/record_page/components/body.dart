@@ -7,12 +7,12 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  String _doctorName = "";
-  String _diseaseName = "";
-  String _remarks = "";
-  String _medication = "";
-  String _date = "";
-  String _time = "";
+  String _doctorName = "Anany Talwad";
+  String _diseaseName = "Lovearia";
+  String _remarks = "To focus on her best-friend";
+  String _medication = "Pta nhi ji konsa nasha krna h";
+  String _date = "To be decided";
+  String _time = "To be decided";
 
   @override
   Widget build(BuildContext context) {
@@ -28,49 +28,49 @@ class _BodyState extends State<Body> {
                 SizedBox(
                   height: getProportionateScreenHeight(10),
                 ),
-                valueContainer("$_date"),
+                valueContainer(_date),
                 SizedBox(
-                  height: getProportionateScreenHeight(25),
+                  height: getProportionateScreenHeight(20),
                 ),
                 propertyNameContainer("Time"),
                 SizedBox(
                   height: getProportionateScreenHeight(10),
                 ),
-                valueContainer("$_time"),
+                valueContainer(_time),
                 SizedBox(
-                  height: getProportionateScreenHeight(30),
+                  height: getProportionateScreenHeight(20),
                 ),
                 propertyNameContainer("Doctor Name"),
                 SizedBox(
                   height: getProportionateScreenHeight(10),
                 ),
-                valueContainer("$_doctorName"),
+                valueContainer(_doctorName),
                 SizedBox(
-                  height: getProportionateScreenHeight(30),
+                  height: getProportionateScreenHeight(20),
                 ),
                 propertyNameContainer("Disease"),
                 SizedBox(
                   height: getProportionateScreenHeight(10),
                 ),
-                valueContainer("$_diseaseName"),
+                valueContainer(_diseaseName),
                 SizedBox(
-                  height: getProportionateScreenHeight(30),
+                  height: getProportionateScreenHeight(20),
                 ),
                 propertyNameContainer("Remarks"),
                 SizedBox(
                   height: getProportionateScreenHeight(10),
                 ),
-                valueContainer("$_remarks"),
+                valueContainer(_remarks),
                 SizedBox(
                   height: getProportionateScreenHeight(30),
                 ),
-                propertyNameContainer("Address"),
+                propertyNameContainer("Medication"),
                 SizedBox(
                   height: getProportionateScreenHeight(10),
                 ),
-                valueContainer("$_medication"),
+                valueContainer(_medication),
                 SizedBox(
-                  height: getProportionateScreenHeight(30),
+                  height: getProportionateScreenHeight(20),
                 ),
               ],
             ),
@@ -82,7 +82,7 @@ class _BodyState extends State<Body> {
 
   Container valueContainer(String value) {
     return Container(
-      padding: EdgeInsets.only(left: 25, right: 10, bottom: 10, top: 10),
+      padding: EdgeInsets.only(left: 20, right: 10, bottom: 10, top: 10),
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.black54,
@@ -93,9 +93,9 @@ class _BodyState extends State<Body> {
         children: [
           Flexible(
             flex: 2,
-            child: Text("$value",
+            child: Text(value,
                 style: TextStyle(
-                  fontSize: 22.0,
+                  fontSize: 20.0,
                   color: Colors.black,
                 )),
           ),

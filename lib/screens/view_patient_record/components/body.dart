@@ -44,7 +44,7 @@ class _BodyState extends State<Body> {
               children: [
                 SizedBox(height: getProportionateScreenHeight(150)),
                 Text(
-                  "View Patient record.",
+                  "View Patient Record.",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,

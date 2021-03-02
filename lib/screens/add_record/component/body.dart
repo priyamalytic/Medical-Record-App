@@ -43,7 +43,6 @@ class _BodyState extends State<Body> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: getProportionateScreenHeight(10)),
                 Text(
                   "Add Patient record.",
                   style: TextStyle(
@@ -71,6 +70,7 @@ class _BodyState extends State<Body> {
                 SizedBox(height: getProportionateScreenHeight(25)),
                 DefaultButton(
                   text: "Submit",
+                  press: () {},
                   // press: () async {
                   //   if (_formKey.currentState.validate()) {
                   //     print(_patientNameController.text +
