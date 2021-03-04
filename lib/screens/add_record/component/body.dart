@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_app/classes/CreateRecord.dart';
 import 'package:med_app/components/default_button.dart';
 import 'package:med_app/screens/homeScreen.dart';
 import '../../../constants.dart';
@@ -70,30 +71,18 @@ class _BodyState extends State<Body> {
                 SizedBox(height: getProportionateScreenHeight(25)),
                 DefaultButton(
                   text: "Submit",
-                  press: () {},
-                  // press: () async {
-                  //   if (_formKey.currentState.validate()) {
-                  //     print(_patientNameController.text +
-                  //         _phoneNoController.text +
-                  //         _patientAddressController.text +
-                  //         _bloodGroupSelectedItem.name +
-                  //         _diabetesSelectedItem.name +
-                  //         _patientHealthConditionController.text);
-                  //
-                  //     var x = await createProfile(
-                  //         _patientNameController.text,
-                  //         _phoneNoController.text,
-                  //         _patientAddressController.text,
-                  //         _bloodGroupSelectedItem.name,
-                  //         _diabetesSelectedItem.name,
-                  //         _patientHealthConditionController.text);
-                  //
-                  //     print(x["body"]);
-                  //     if (x["statusCode"] == 200) {
-                  //       showAlertDialog(context, x["patient_id"]);
-                  //     }
-                  //   }
-                  // },
+                  press: () async {
+                    var x = await createRecord(
+                        _patientIdController.text,
+                        _doctorNameController.text,
+                        _diseaseController.text,
+                        _remarksController.text,
+                        _medicationController.text);
+
+                    if (x["statusCode"] == 200) {
+                      showAlertDialog(context, _patientIdController.text);
+                    }
+                  },
                 ),
                 SizedBox(height: getProportionateScreenHeight(30)),
               ],
@@ -151,7 +140,7 @@ class _BodyState extends State<Body> {
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Text("Success"),
-      content: Text("Your Patient ID is: " + patientId),
+      content: Text("Record Added Successfully"),
       actions: [
         okButton,
       ],
