@@ -114,7 +114,6 @@ class _BodyState extends State<Body> {
           color: Colors.black,
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Icon(Icons.person),
       ),
     );
   }
