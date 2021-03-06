@@ -17,10 +17,9 @@ class DefaultButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       height: getProportionateScreenHeight(60),
-      child: FlatButton(
+      child: FloatingActionButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        // color: Color(0xFFF68887),
-        color: kPrimaryColor,
+        backgroundColor: kPrimaryColor,
         onPressed: press,
         child: Text(
           text,
