@@ -33,8 +33,8 @@ InputDecorationTheme inputDecorationTheme() {
 
 TextTheme textTheme() {
   return TextTheme(
-    bodyText1: TextStyle(color: kTextColor),
-    bodyText2: TextStyle(color: kTextColor),
+    bodyText1: TextStyle(color: Colors.black),
+    bodyText2: TextStyle(color: Colors.black),
   );
 }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_app/screens/record_page/components/recordField.dart';
 import '../../../size_config.dart';
 
 class Body extends StatefulWidget {
@@ -7,13 +8,6 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  String _doctorName = "Anany Talwad";
-  String _diseaseName = "Lovearia";
-  String _remarks = "To focus on her best-friend";
-  String _medication = "Pta nhi ji konsa nasha krna h";
-  String _date = "To be decided";
-  String _time = "To be decided";
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -24,54 +18,14 @@ class _BodyState extends State<Body> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                propertyNameContainer("Date"),
-                SizedBox(
-                  height: getProportionateScreenHeight(10),
-                ),
-                valueContainer(_date),
                 SizedBox(
                   height: getProportionateScreenHeight(20),
                 ),
-                propertyNameContainer("Time"),
-                SizedBox(
-                  height: getProportionateScreenHeight(10),
-                ),
-                valueContainer(_time),
+                RecordField(),
                 SizedBox(
                   height: getProportionateScreenHeight(20),
                 ),
-                propertyNameContainer("Doctor Name"),
-                SizedBox(
-                  height: getProportionateScreenHeight(10),
-                ),
-                valueContainer(_doctorName),
-                SizedBox(
-                  height: getProportionateScreenHeight(20),
-                ),
-                propertyNameContainer("Disease"),
-                SizedBox(
-                  height: getProportionateScreenHeight(10),
-                ),
-                valueContainer(_diseaseName),
-                SizedBox(
-                  height: getProportionateScreenHeight(20),
-                ),
-                propertyNameContainer("Remarks"),
-                SizedBox(
-                  height: getProportionateScreenHeight(10),
-                ),
-                valueContainer(_remarks),
-                SizedBox(
-                  height: getProportionateScreenHeight(30),
-                ),
-                propertyNameContainer("Medication"),
-                SizedBox(
-                  height: getProportionateScreenHeight(10),
-                ),
-                valueContainer(_medication),
-                SizedBox(
-                  height: getProportionateScreenHeight(20),
-                ),
+                RecordField(),
               ],
             ),
           ),
