@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:med_app/classes/GetRecord.dart';
 import 'package:med_app/components/default_button.dart';
 import 'package:med_app/screens/profile_page/profilePage.dart';
-import 'package:med_app/screens/view_patient_record/viewPatientRecord.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
