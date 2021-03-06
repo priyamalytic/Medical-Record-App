@@ -35,7 +35,7 @@ class _RecordFieldState extends State<RecordField> {
                   ),
                 ),
                 Text(
-                  "06-03-2021",
+                  _date,
                   style: TextStyle(
                     fontSize: 17.0,
                   ),
@@ -53,7 +53,7 @@ class _RecordFieldState extends State<RecordField> {
                   ),
                 ),
                 Text(
-                  "01:10 PM",
+                  _time,
                   style: TextStyle(
                     fontSize: 17.0,
                   ),
